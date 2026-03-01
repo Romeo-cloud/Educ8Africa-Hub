@@ -11,13 +11,15 @@ __pycache__/
 .env.production
 .env.development
 .env.*.local
-.env.example
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Allow .env.example for documentation
+# .env.example is NOT ignored (used for documentation)
 
 # Django Specific
 db.sqlite3

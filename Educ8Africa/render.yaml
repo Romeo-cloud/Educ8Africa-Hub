@@ -1,0 +1,32 @@
+# Render Blueprint Configuration
+# This file defines the services for Render deployment
+
+services:
+  # Backend API Service
+  - type: web
+    name: educ8africa-api
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt && alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_URL_RENDER
+        fromDatabase:
+          name: educ8africa-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: SMTP_USERNAME
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+
+  # PostgreSQL Database
+  - type: psql
+    name: educ8africa-db
+    plan: free
+    region: oregon

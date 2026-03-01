@@ -21,6 +21,7 @@ async def lifespan(app: FastAPI):
     """Application startup and shutdown events."""
     # Startup
     logger.info("Starting up Training Registration System...")
+    logger.info(f"Environment: {settings.ENVIRONMENT}")
 
     # Create tables
     Base.metadata.create_all(bind=engine)
@@ -55,10 +56,21 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# CORS middleware
+# CORS middleware - configure appropriately for production
+# For production, use specific frontend URL instead of "*"
+if settings.ENVIRONMENT == "production":
+    # In production, use the frontend URL from settings
+    cors_origins = [settings.FRONTEND_URL] if settings.FRONTEND_URL else []
+    # Also allow the Render service URL if available
+    if hasattr(settings, 'RENDER_SERVICE_URL') and settings.RENDER_SERVICE_URL:
+        cors_origins.append(settings.RENDER_SERVICE_URL)
+else:
+    # Development - allow all origins
+    cors_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -87,5 +99,8 @@ def root():
 
 @app.get("/health", tags=["Root"])
 def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy"}
+    """Health check endpoint for Render."""
+    return {
+        "status": "healthy",
+        "environment": settings.ENVIRONMENT
+    }
