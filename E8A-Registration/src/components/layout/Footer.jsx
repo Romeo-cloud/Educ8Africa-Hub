@@ -31,19 +31,19 @@ export default function Footer() {
           <div>
             <h4 className="footer-heading">Programs</h4>
             <ul className="footer-list">
-              <li><span className="footer-list-item">Web Development</span></li>
-              <li><span className="footer-list-item">Data Science</span></li>
-              <li><span className="footer-list-item">Mobile Dev</span></li>
-              <li><span className="footer-list-item">UI/UX Design</span></li>
+              <li><span className="footer-list-item">Security Essentials</span></li>
+              <li><span className="footer-list-item">Ethical Hacking</span></li>
+              <li><span className="footer-list-item">SOC</span></li>
+              <li><span className="footer-list-item">Comptia Security+</span></li>
             </ul>
           </div>
 
           <div>
             <h4 className="footer-heading">Contact</h4>
             <ul className="footer-list">
-              <li style={{ fontSize: 14 }}>hello@Educ8Africa Hub.com</li>
-              <li style={{ fontSize: 14 }}>+234 801 234 5678</li>
-              <li style={{ fontSize: 14 }}>Lagos, Nigeria</li>
+              <li style={{ fontSize: 14 }}>programs@educ8Africa.com</li>
+              <li style={{ fontSize: 14 }}>+233 550 950 226</li>
+              <li style={{ fontSize: 14 }}>Accra, Ghana</li>
             </ul>
             <div className="footer-social">
               {["T", "L", "G"].map((s) => (
