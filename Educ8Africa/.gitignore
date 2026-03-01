@@ -1,0 +1,49 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.python-version
+
+# Environments
+.env
+.env.local
+.env.production
+.env.development
+.env.*.local
+.env.example
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django Specific
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+
+# Logs and Databases
+*.log
+local_settings.py
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# IDEs/Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets and Credentials
+*.pem
+*.key
+credentials.json
+serviceAccountKey.json
+*.secret
+secrets/
+keys/
